@@ -15,3 +15,7 @@ deps/deps.jl
 .idea/
 *.swp
 *~
+
+# Generated docs preview
+docs/build/
+docs/site/
