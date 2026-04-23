@@ -1,91 +1,77 @@
+<div align="center">
+
 # SelfFulfillingNKPC.jl
 
-[![CI](https://github.com/nilufarslh/NKPC_SelfFullfilling_Econ622-Project/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/nilufarslh/NKPC_SelfFullfilling_Econ622-Project/actions/workflows/CI.yml)
-[![Docs dev](https://img.shields.io/badge/docs-dev-blue.svg)](https://nilufarslh.github.io/NKPC_SelfFullfilling_Econ622-Project/dev/)
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](LICENSE)
+**SMM estimation of a self-fulfilling New Keynesian Phillips curve with central-bank learning.**
 
-SMM estimation of a self-fulfilling New Keynesian Phillips curve in the spirit of Beaudry, Hou and Portier (2020).
+[![CI](https://github.com/nilufarslh/NKPC_SelfFullfilling_Econ622-Project/actions/workflows/CI.yml/badge.svg?branch=main)](https://github.com/nilufarslh/NKPC_SelfFullfilling_Econ622-Project/actions/workflows/CI.yml?query=branch%3Amain)
+[![Docs](https://img.shields.io/badge/docs-dev-blue.svg)](https://nilufarslh.github.io/NKPC_SelfFullfilling_Econ622-Project/dev/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-Author: Niloufar Eslahi. License: MIT. Full documentation: <https://nilufarslh.github.io/NKPC_SelfFullfilling_Econ622-Project/dev/>.
+<br/>
 
-## Overview
+<img src="results/figures/fig_self_fulfilling_calibrated.png" width="780" alt="Self-fulfilling NKPC — calibrated Case 2 output."/>
 
-A central bank that estimates the slope of the NKPC from the data it observes, while simultaneously setting the policy rule that shapes that data, creates a feedback loop between beliefs, policy and outcomes. This package estimates the structural slope $\kappa$ under two specifications of that loop on US quarterly data from 1984Q2 onwards. The estimation procedure is a single-stage simulated method of moments with ForwardDiff gradients, Fminbox(L-BFGS) inner solves, and bootstrap standard errors computed in parallel across threads. The model derivation, estimation details, and Case 2 results are in `REPORT.md` and `REPORT.pdf`.
+<sub><b>Case 2 (active intervention)</b>, US quarterly data, <i>1984Q2–2025Q2</i>.</sub>
 
-## What the driver runs
+</div>
 
-`run_estimation.jl` is the entry point that produced the Case 2 results saved in `results/case2_with_intervention/`. Invoked as a script, it runs two cases in sequence, writing a timestamped log file and per-case CSVs to `results/`.
+---
 
-| Case                     | Policy rule                                                                | Weighting $W$                | Starts |
-|--------------------------|----------------------------------------------------------------------------|------------------------------|-------:|
-| case1_no_intervention    | Passive Taylor rule with $\phi_\pi$ frozen at $\phi_\pi^*(\hat\kappa_0)$   | $\operatorname{diag}(1/|\hat m|)$ | 20 |
-| case2_with_intervention  | $\phi_\pi^*(\hat\kappa_t)$ re-optimised every period as $\hat\kappa_t$ updates | $I$                          | 10 |
+## What it does
 
-Both cases fix $\theta_y = 1$ as the identification normalisation, calibrate $\theta_r = 0.3$, and estimate $\kappa$. The shock system has four innovations: demand $d_t$ and cost-push $\nu_t$ (AR(1), with persistence and volatility estimated), and iid measurement errors $m^y_t$ and $m^\pi_t$ that enter the Taylor rule with estimated volatilities. The composite policy residual $u_t = \phi_\pi m^\pi_t + \phi_y m^y_t$ is formed each period at the realised $(\phi_\pi, \phi_y)$, which under active intervention depend on the current belief.
+Estimates the structural slope $\kappa$ of the NKPC
 
-## Reproducing the results
+$$
+\pi_t = \beta\,\mathbb{E}_t\pi_{t+1} + \kappa\,y_t + \nu_t
+$$
 
-Requires Julia $\geq$ 1.9. Dependencies install automatically on first run.
+when the central bank sets its Taylor coefficient $\phi_\pi^\*(\hat\kappa_t)$ from a real-time estimate of $\kappa$ — a feedback loop between beliefs, policy, and the data they generate. Two cases are estimated by single-stage SMM with ForwardDiff gradients, Fminbox(L-BFGS), and threaded bootstrap standard errors.
 
-```
-julia --project=. -t auto run_estimation.jl
-julia --project=. -t auto test/runtests.jl
-```
+| Case                       | Policy rule                                              | Weight $W$                                       | Starts |
+|----------------------------|----------------------------------------------------------|--------------------------------------------------|-------:|
+| `case1_no_intervention`    | $\phi_\pi$ frozen at $\phi_\pi^\*(\hat\kappa_0)$         | $\mathrm{diag}(1/\lvert\hat m\rvert)$            |     20 |
+| `case2_with_intervention`  | $\phi_\pi^\*(\hat\kappa_t)$ re-optimised every period    | $I$                                              |     10 |
 
-The estimation driver writes `results/<case>/params.csv`, `results/<case>/moments.csv`, and a timestamped log `results/estimation_<YYYYMMDD_HHMMSS>.log` recording every start's objective and parameter vector. Multi-threading (`-t auto`) is recommended: bootstrap replicates are distributed across threads via `Threads.@threads` inside `bootstrap_se`, and the two cases together take roughly eight minutes on a four-thread machine.
+Written for ECON 622 at UBC. Full report: [`REPORT.pdf`](REPORT.pdf). Full API: [documentation](https://nilufarslh.github.io/NKPC_SelfFullfilling_Econ622-Project/dev/).
 
-## Case 2 configuration
+## Install
 
-The Case 2 estimates in `results/case2_with_intervention/` were produced with the following fixed design.
-
-The sample is quarterly US data for 1984Q2--2025Q2, $T = 166$ observations, on headline CPI year-over-year inflation, the CBO output gap, and the effective Federal Funds rate, all in percent and demeaned before moments are computed. Eleven targeted moments are matched: four VAR(1) cross-coefficients from a trivariate system on $(\pi, y, r)$, the residual variances of $\pi$ and $y$, three contemporaneous cross-covariances, and the first-order autocovariances of $\pi$ and $y$. Seven parameters are estimated: $\kappa$, $\rho_d$, $\rho_v$, $\sigma_d$, $\sigma_v$, $\sigma_{my}$ and $\sigma_{m\pi}$.
-
-The outer optimiser is Fminbox(L-BFGS) with exact ForwardDiff gradients. Ten starts are generated by scaling the prior mean $\theta_0$ elementwise by a fixed sequence of multipliers $(1.0, 1.5, 0.5, 2.0, 0.3, 0.7, 1.2, 0.4, 1.8, 0.6)$, clamped back into the admissible box. A two-minute time cap per start keeps the longest searches from blocking the others. The CB's inner policy problem is approximated by a 31-point linear interpolant of $\phi_\pi^*(\hat\kappa)$ built at the current $\theta$, which is smooth enough for ForwardDiff to flow through and avoids the non-dual minimiser that Brent's method would otherwise return.
-
-Standard errors come from a nonparametric bootstrap. Twenty independent paths of the same length as the data are simulated at $\hat\theta$, the moments are recomputed from each path, and L-BFGS is restarted from $\hat\theta$ on each simulated sample. The reported standard errors are the sample standard deviations of the twenty replicate estimates.
-
-## Repository layout
-
-```
-src/
-  SelfFulfillingNKPC.jl   Module entry point and exports
-  config.jl               Case definitions, ModelParams, ParamSpec, pack/unpack
-  data.jl                 Quarterly US data loader
-  model.jl                Taylor rule, unconditional variances, CB policy (Brent)
-  policy_interp.jl        31-point linear interpolation of the CB policy map
-  simulation.jl           Forward simulation with learning and AR(1) shocks
-  moments.jl              Moment computation (four alternatives including NKPC-targeted)
-  objective.jl            SMM criterion
-  optimize.jl             Multi-start Fminbox(L-BFGS) with ForwardDiff gradients
-  inference.jl            Parallel bootstrap standard errors and reporting
-
-scripts/
-  benchmark.jl            BenchmarkTools timing of simulate() and ForwardDiff
-  fig_report.jl           Report figures (policy map, learning path, κ̂(κ₀))
-
-test/
-  runtests.jl             Eleven test sets: round-trip, AD vs FD, allocation, recovery
-
-data/
-  targets.csv             Quarterly (pi, y, r), 1984Q2--2025Q2
-
-run_estimation.jl         Main driver, two cases in sequence, timestamped log
+```julia
+using Pkg
+Pkg.add(url = "https://github.com/nilufarslh/NKPC_SelfFullfilling_Econ622-Project")
 ```
 
-## Computational techniques
+Requires Julia ≥ 1.10.
 
-ForwardDiff dual numbers propagate through every floating-point operation in the simulation, including the learning recursion, the policy interpolant, and the reduced-form inversion, so L-BFGS receives exact gradients of the SMM criterion without finite-difference step-size tuning. The policy interpolant is the ingredient that makes this work for the intervention case: Brent's solver for the CB's inner problem returns a Float64 minimiser that would break the gradient, and replacing it by a 31-point linear interpolant over the belief grid restores differentiability at a sup-error below $0.3$.
+## Reproduce
 
-Multi-start optimisation uses a fixed multiplier sequence applied to the prior mean rather than Sobol draws over the full parameter box. The multiplier starts keep $\sigma_{m\pi}$ near its prior-plausible magnitude and avoid a degenerate $\kappa \approx 0$ basin that low-discrepancy starts on the full box were repeatedly finding.
+| # | Step              | Command                                                      | Runtime |
+|---|-------------------|--------------------------------------------------------------|---------|
+| 1 | Instantiate env   | `julia --project=. -e 'using Pkg; Pkg.instantiate()'`        | once    |
+| 2 | Estimate (both cases) | `julia --project=. -t auto run_estimation.jl`            | ~8 min  |
+| 3 | Tests             | `julia --project=. -t auto test/runtests.jl`                 | ~2 min  |
+| 4 | Figures           | `julia --project=. -t auto scripts/fig_report.jl`            | ~30 s   |
 
-Parametric `ModelParams{T}` with a kwdef mutable struct supports AD propagation: `unpack(theta::Vector{T}, cfg)` returns `ModelParams{T}` so that `ForwardDiff.Dual` flows end-to-end without intermediate `Float64` conversions. The test suite includes an `@allocated` guard on a 40-period simulation to catch regressions that would make the AD pass unnecessarily expensive.
+Outputs land in `results/<case>/params.csv`, `results/<case>/moments.csv`, and a timestamped log `results/estimation_<YYYYMMDD_HHMMSS>.log`. Seeds are fixed.
 
-Bootstrap standard errors are computed in parallel across threads. The twenty replicates each simulate a fresh shock path at $\hat\theta$ and re-estimate from a single warm start, which makes each replicate inexpensive and lets the full bootstrap finish in roughly the wall-clock time of one additional estimation pass.
+## Citation
 
-## References
+<details>
+<summary>BibTeX</summary>
 
-Beaudry, P., Hou, C. and Portier, F. (2020). Monetary policy when the Phillips curve is quite flat. CEPR Discussion Paper 15184.
+```bibtex
+@misc{eslahi2026selffulfillingnkpc,
+  author       = {Eslahi, Niloufar},
+  title        = {{SelfFulfillingNKPC.jl}: SMM estimation of a self-fulfilling New Keynesian Phillips curve with central-bank learning},
+  year         = {2026},
+  note         = {ECON 622 final project, University of British Columbia},
+  howpublished = {\url{https://github.com/nilufarslh/NKPC_SelfFullfilling_Econ622-Project}}
+}
+```
 
-Evans, G. W. and Honkapohja, S. (2001). *Learning and Expectations in Macroeconomics*. Princeton University Press.
+</details>
 
-Mavroeidis, S., Plagborg-Møller, M. and Stock, J. H. (2014). Empirical evidence on inflation expectations in the New Keynesian Phillips curve. *Journal of Economic Literature* 52, 124--188.
+## License
+
+[MIT](LICENSE) © 2026 Niloufar Eslahi.
