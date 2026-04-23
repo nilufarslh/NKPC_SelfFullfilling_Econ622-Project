@@ -30,6 +30,7 @@ function uncond_var(sigma, rho)
     sigma^2 / (1 - rho_c^2)
 end
 
+# ── CB policy: numeric Brent, 4-shock subjective loss (no θ_r) ──────────────
 """
     policy_numeric(k̂, p, cfg) -> φ_π
 
@@ -39,7 +40,6 @@ loss is the subjective `Var(π) + λ_y Var(y)` computed on the four-shock
 system (demand, cost-push, and the two measurement errors); `θ_r` is omitted
 from the bank's subjective model.
 """
-# ── CB policy: numeric Brent, 4-shock subjective loss (no θ_r) ──────────────
 function policy_numeric(k_hat, p::ModelParams, cfg::EstimationConfig)
     Vd  = uncond_var(p.sigma_d, p.rho_d)
     Vv  = uncond_var(p.sigma_v, p.rho_v)
