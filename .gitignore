@@ -6,6 +6,8 @@ results/estimation_*.log
 *.jl.*.cov
 *.jl.mem
 deps/deps.jl
+Manifest.toml
+docs/Manifest.toml
 
 # macOS
 .DS_Store
