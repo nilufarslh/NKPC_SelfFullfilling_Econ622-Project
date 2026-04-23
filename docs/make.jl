@@ -21,7 +21,7 @@ makedocs(;
         "API Reference"   => "api.md",
     ],
     checkdocs = :none,
-    warnonly = [:missing_docs, :cross_references, :docs_block],
+    warnonly = [:missing_docs, :cross_references],
 )
 
 deploydocs(;

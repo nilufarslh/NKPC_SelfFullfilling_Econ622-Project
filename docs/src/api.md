@@ -4,81 +4,33 @@
 CurrentModule = SelfFulfillingNKPC
 ```
 
-The package exports configuration, simulation, moment, objective, estimation, and inference primitives. This page auto-renders the docstrings of every exported symbol.
-
-## Configuration
-
-```@docs
-ModelParams
-ParamSpec
-EstimationConfig
-case_non_iid
-case_non_iid_free_phi
-param_names
-theta0_vec
-lower_bounds
-upper_bounds
-unpack
-```
+This page renders docstrings for the documented public API. Symbols without a docstring are exported but not listed here; see the [source tree](https://github.com/nilufarslh/NKPC_SelfFullfilling_Econ622-Project/tree/main/src) for implementation details.
 
 ## Data
 
 ```@docs
-TargetData
 load_targets
-```
-
-## Model primitives
-
-```@docs
-taylor_rule
-uncond_var
-policy_numeric
-compute_policy
-```
-
-## Policy interpolant
-
-```@docs
-PolicyInterp
-build_policy_interp
-evaluate_policy_itp
 ```
 
 ## Simulation
 
 ```@docs
-SimulationResult
 simulate
 ```
 
 ## Moments
 
 ```@docs
-MomentVector
 compute_moments
-moments_from_theta
 var1_ols
 vec_mat
 vech
-cov_lag
 ```
 
-## Objective and estimation
-
-```@docs
-smm_objective
-estimate_smm
-OptimResult
-```
-
-## Inference and reporting
+## Inference
 
 ```@docs
 CaseResult
-bootstrap_se
-print_results
-save_results
 ```
 
 ## Index
