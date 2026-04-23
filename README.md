@@ -4,7 +4,9 @@
 [![Docs](https://img.shields.io/badge/docs-dev-blue.svg)](https://nilufarslh.github.io/NKPC_SelfFullfilling_Econ622-Project/dev/)
 [![License: MIT](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
 
-Can the slope of the New Keynesian Phillips curve be identified from US macro data when the central bank's own learning about the slope shapes the data the econometrician sees? This package answers that question by estimating the slope under two monetary-policy regimes that differ only in whether the Taylor coefficient responds to the bank's real-time belief about the slope. ECON 622 final project, UBC.
+Can the slope of the New Keynesian Phillips curve be identified from US macro data when the central bank's own learning about the slope shapes the data the econometrician sees? This package answers that question by estimating the slope under two monetary-policy regimes that differ only in whether the Taylor coefficient responds to the bank's real-time belief about the slope.
+
+*ECON 622 final project, University of British Columbia. Niloufar Eslahi.*
 
 ## The model
 
