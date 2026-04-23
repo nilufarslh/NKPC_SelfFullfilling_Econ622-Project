@@ -37,6 +37,13 @@ end
 
 # ── Lag covariance ──────────────────────────────────────────────────────────
 
+"""
+    cov_lag(x, y, L)
+
+Sample cross-covariance at lag `L`, computed on the aligned slices
+`x[1+L:end]` and `y[1:end-L]` after demeaning each slice. `L=0` gives the
+contemporaneous covariance.
+"""
 function cov_lag(x::AbstractVector, y::AbstractVector, L::Int)
     if L == 0
         x1, y1 = x, y
@@ -51,6 +58,12 @@ end
 
 # ── Named moment vector ─────────────────────────────────────────────────────
 
+"""
+    MomentVector{T}
+
+Named vector of moments: the numeric `values` and matching `names`. Supports
+`length` and integer indexing.
+"""
 struct MomentVector{T<:Real}
     values ::Vector{T}
     names  ::Vector{String}

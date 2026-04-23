@@ -2,6 +2,13 @@
 # Simulation: persistent RF, decomposed m_y/m_π, innovations held fixed
 # ──────────────────────────────────────────────────────────────────────────────
 
+"""
+    SimulationResult{T}
+
+One simulated path: the post-burn-in observable matrix `X = [π y r]`, the
+three series, and the full-length paths of the belief `κ̂` and the applied
+policy coefficients `φ_π, φ_y`.
+"""
 struct SimulationResult{T<:Real}
     X            ::Matrix{T}
     pi           ::Vector{T}

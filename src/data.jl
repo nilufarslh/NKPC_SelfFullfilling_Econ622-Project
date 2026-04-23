@@ -2,6 +2,12 @@
 # Data loading and pre-processing
 # ──────────────────────────────────────────────────────────────────────────────
 
+"""
+    TargetData
+
+Loaded data: a `T × 3` matrix `X = [π y r]` (demeaned, optionally annualised),
+the sample length `T`, and the column names. Returned by [`load_targets`](@ref).
+"""
 struct TargetData
     X     ::Matrix{Float64}   # T×3 — [π  y  r], demeaned & annualised
     T     ::Int

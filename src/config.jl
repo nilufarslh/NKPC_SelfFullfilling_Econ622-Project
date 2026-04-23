@@ -10,6 +10,14 @@
 # σ_my and σ_mπ estimated separately.
 # ──────────────────────────────────────────────────────────────────────────────
 
+"""
+    ModelParams{T}
+
+All structural and policy parameters of the model. Mutable so that
+[`unpack`](@ref) can overwrite the estimated fields while the rest stay at
+their calibrated values. Parametric in `T` so that ForwardDiff duals
+propagate through the entire simulation.
+"""
 Base.@kwdef mutable struct ModelParams{T<:Real}
     beta      ::T = 0.99
     gamma     ::T = 1.00
@@ -32,6 +40,12 @@ Base.@kwdef mutable struct ModelParams{T<:Real}
     phi_y     ::T = 0.50
 end
 
+"""
+    ParamSpec(name, theta0, lb, ub)
+
+Estimation spec for one parameter: its symbol, starting value, and box
+bounds. A vector of these lives on `EstimationConfig.estimated`.
+"""
 struct ParamSpec
     name  ::Symbol
     theta0::Float64
@@ -39,6 +53,14 @@ struct ParamSpec
     ub    ::Float64
 end
 
+"""
+    EstimationConfig
+
+Everything that defines one estimation case: fixed vs estimated parameters,
+learning settings, CB policy bounds, burn-in and seed, which moment set to
+match, and how to compute standard errors. Build one via [`case_non_iid`](@ref)
+or [`case_non_iid_free_phi`](@ref).
+"""
 struct EstimationConfig
     environment  ::Symbol
     intervention ::Bool
@@ -110,6 +132,14 @@ function _base_config(;environment, intervention, free_phi, estimated)
     )
 end
 
+"""
+    case_non_iid(; intervention) -> EstimationConfig
+
+Build the standard non-iid case: seven estimated parameters (κ, the two AR(1)
+persistences and volatilities, and the two measurement-error volatilities).
+`intervention=false` freezes the Taylor coefficient at `φ_π(κ̂₀)` (Case 1);
+`intervention=true` re-optimises it every period as the belief updates (Case 2).
+"""
 function case_non_iid(;intervention::Bool)
     estimated = [
         ParamSpec(:kappa,     0.20, 0.001,  1.00),
@@ -124,6 +154,13 @@ function case_non_iid(;intervention::Bool)
                  free_phi=false, estimated=estimated)
 end
 
+"""
+    case_non_iid_free_phi(; intervention=true) -> EstimationConfig
+
+Variant that treats `φ_π` and `φ_y` as free parameters rather than solving
+the CB's inner policy problem. The objective is globally smooth in `θ`, so
+this is the clean path for the AD-vs-finite-difference gradient test.
+"""
 function case_non_iid_free_phi(;intervention::Bool=true)
     estimated = [
         ParamSpec(:kappa,     0.20, 0.001,  1.00),
@@ -144,11 +181,42 @@ end
 # Pack / unpack
 # ──────────────────────────────────────────────────────────────────────────────
 
+"""
+    param_names(cfg) -> Vector{Symbol}
+
+Names of the estimated parameters in `cfg`, in vector order.
+"""
 param_names(cfg::EstimationConfig) = [s.name for s in cfg.estimated]
+
+"""
+    theta0_vec(cfg) -> Vector{Float64}
+
+Starting values for the estimated parameters, in vector order.
+"""
 theta0_vec(cfg::EstimationConfig)  = [s.theta0 for s in cfg.estimated]
+
+"""
+    lower_bounds(cfg) -> Vector{Float64}
+
+Lower box bounds for the estimated parameters.
+"""
 lower_bounds(cfg::EstimationConfig) = [s.lb for s in cfg.estimated]
+
+"""
+    upper_bounds(cfg) -> Vector{Float64}
+
+Upper box bounds for the estimated parameters.
+"""
 upper_bounds(cfg::EstimationConfig) = [s.ub for s in cfg.estimated]
 
+"""
+    unpack(theta, cfg) -> ModelParams{T}
+
+Turn an estimated parameter vector into a fully-populated `ModelParams`,
+preserving the element type `T` so ForwardDiff duals flow through end-to-end.
+Fixed fields are taken from `cfg.fixed`; estimated fields are overwritten
+from `theta` in the order given by `param_names(cfg)`.
+"""
 function unpack(theta::AbstractVector{T}, cfg::EstimationConfig) where T
     p = ModelParams{T}(
         beta      = T(cfg.fixed.beta),

@@ -9,15 +9,36 @@
 # measurement shocks (m_y, m_π) separately, hence the four-shock sum.
 # ──────────────────────────────────────────────────────────────────────────────
 
+"""
+    taylor_rule(π, y, u, φ_π, φ_y) -> r
+
+Evaluate the Taylor rule `r = φ_π π + φ_y y + u`.
+"""
 function taylor_rule(pi_t, y_t, u_t, phi_pi, phi_y)
     phi_pi * pi_t + phi_y * y_t + u_t
 end
 
+"""
+    uncond_var(σ, ρ)
+
+Unconditional variance `σ² / (1 - ρ²)` of an AR(1) with innovation std `σ`
+and persistence `ρ`. `ρ` is clamped into `(-0.9999, 0.9999)` so the result
+stays finite near the unit root.
+"""
 function uncond_var(sigma, rho)
     rho_c = clamp(rho, -0.9999, 0.9999)
     sigma^2 / (1 - rho_c^2)
 end
 
+"""
+    policy_numeric(k̂, p, cfg) -> φ_π
+
+The central bank's best-response Taylor coefficient on inflation at belief
+`k̂`, found by 1-D Brent search over `[cfg.phi_min, cfg.phi_max]`. The CB's
+loss is the subjective `Var(π) + λ_y Var(y)` computed on the four-shock
+system (demand, cost-push, and the two measurement errors); `θ_r` is omitted
+from the bank's subjective model.
+"""
 # ── CB policy: numeric Brent, 4-shock subjective loss (no θ_r) ──────────────
 function policy_numeric(k_hat, p::ModelParams, cfg::EstimationConfig)
     Vd  = uncond_var(p.sigma_d, p.rho_d)
@@ -58,6 +79,13 @@ function policy_numeric(k_hat, p::ModelParams, cfg::EstimationConfig)
     clamp(Optim.minimizer(result), cfg.phi_min, cfg.phi_max)
 end
 
+"""
+    compute_policy(k̂, p, cfg; itp=nothing) -> (φ_π, φ_y)
+
+Return the policy coefficients to apply at belief `k̂`. Uses the precomputed
+interpolant `itp` if given, otherwise falls back to [`policy_numeric`](@ref).
+If `cfg.free_phi` is set, the free `φ_π, φ_y` in `p` are returned directly.
+"""
 function compute_policy(k_hat, p::ModelParams, cfg::EstimationConfig; itp=nothing)
     if cfg.free_phi
         return (p.phi_pi, p.phi_y)

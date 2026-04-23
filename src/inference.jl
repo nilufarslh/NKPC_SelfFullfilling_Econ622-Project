@@ -25,6 +25,16 @@ end
 
 # ── Bootstrap standard errors ────────────────────────────────────────────────
 
+"""
+    bootstrap_se(theta_hat, cfg, m_data, W, T_obs; B=cfg.bootstrap_reps,
+                 logfile=nothing) -> Vector{Float64}
+
+Nonparametric bootstrap standard errors. `B` independent innovation paths
+are drawn at `theta_hat`, each is re-estimated with a single L-BFGS restart
+warm-started at `theta_hat`, and the sample standard deviation of the
+resulting parameter draws is returned. Runs in parallel across
+`Threads.nthreads()` threads.
+"""
 function bootstrap_se(theta_hat::Vector{Float64}, cfg::EstimationConfig,
                       m_data::Vector{Float64}, W::Matrix{Float64},
                       T_obs::Int; B::Int=cfg.bootstrap_reps,
@@ -70,6 +80,12 @@ end
 
 # ── Reporting ────────────────────────────────────────────────────────────────
 
+"""
+    print_results(cr)
+
+Print a formatted parameter table (estimate and bootstrap SE) followed by
+the moment-fit table (data, simulated, difference) to stdout.
+"""
 function print_results(cr::CaseResult)
     println("\n", "="^70)
     @printf("  Case: %s | intervention = %s\n",
@@ -99,6 +115,12 @@ function print_results(cr::CaseResult)
     println()
 end
 
+"""
+    save_results(cr, dir)
+
+Write two CSVs into `dir` (creating it if missing): `params.csv` (parameter,
+estimate, SE) and `moments.csv` (moment, data, simulated, difference).
+"""
 function save_results(cr::CaseResult, dir::AbstractString)
     mkpath(dir)
 

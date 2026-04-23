@@ -2,6 +2,15 @@
 # SMM objective: innovations held fixed, no priors
 # ──────────────────────────────────────────────────────────────────────────────
 
+"""
+    smm_objective(theta, cfg, m_data, W, T_obs; inn_d, inn_v, inn_my, inn_mpi, policy_itp=nothing)
+
+The SMM criterion `(m(θ) - m̂)' W (m(θ) - m̂)`. Innovations are held fixed
+across evaluations so the objective is a deterministic function of `θ`;
+that is what lets ForwardDiff produce exact gradients. If the simulated
+moments go non-finite, a large quadratic penalty in `θ - θ₀` is returned so
+the outer optimiser can still descend.
+"""
 function smm_objective(theta::AbstractVector{T}, cfg::EstimationConfig,
                        m_data::Vector{Float64}, W::Matrix{Float64},
                        T_obs::Int;
