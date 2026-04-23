@@ -8,9 +8,6 @@
 # Run with:   julia --project=. -t auto test/runtests.jl
 # ──────────────────────────────────────────────────────────────────────────────
 
-using Pkg
-Pkg.activate(joinpath(@__DIR__, ".."))
-
 using Test, Random, LinearAlgebra, Statistics, ForwardDiff
 
 include(joinpath(@__DIR__, "..", "src", "SelfFulfillingNKPC.jl"))
