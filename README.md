@@ -6,7 +6,7 @@
 
 Can the slope of the New Keynesian Phillips curve be identified from US macro data when the central bank's own learning about the slope shapes the data the econometrician sees? This package answers that question by estimating the slope under two monetary-policy regimes that differ only in whether the Taylor coefficient responds to the bank's real-time belief about the slope.
 
-*ECON 622 final project, University of British Columbia. Niloufar Eslahi.*
+*ECON 622 final project, University of British Columbia. Niloufar Eslah.*
 
 ## The model
 
