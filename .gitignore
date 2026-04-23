@@ -1,0 +1,17 @@
+# Timestamped estimation logs (regenerated on each run)
+results/estimation_*.log
+
+# Julia artefacts
+*.jl.cov
+*.jl.*.cov
+*.jl.mem
+deps/deps.jl
+
+# macOS
+.DS_Store
+
+# Editor / IDE
+.vscode/
+.idea/
+*.swp
+*~

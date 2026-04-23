@@ -1,0 +1,442 @@
+==============================================================================
+  Case 1 — passive policy  (N=30000 simulate calls, T_obs=166)
+==============================================================================
+
+--- Flat profile (top by self-time) ---
+
+ Count  Overhead File                                     Line Function
+ =====  ======== ====                                     ==== ========
+    20         0 @SelfFulfillingNKPC/src/simulation.jl     87 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    20         0 @Base/generator.jl                        45 iterate
+    20         0 @Base/iterators.jl                      1171 iterate
+    21         0 @SelfFulfillingNKPC/src/simulation.jl     66 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    21         0 @SelfFulfillingNKPC/src/model.jl          56 policy_numeric
+    21         0 @Optim/src/univariate/solvers/brent.jl    23 optimize
+    21         0 @Base/simdloop.jl                         78 macro expansion
+    21        21 @Base/int.jl                              87 +
+    22         0 @SelfFulfillingNKPC/src/simulation.jl     52 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    25         0 @SelfFulfillingNKPC/src/simulation.jl     88 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    25        25 @Base/Base_compiler.jl                    54 getproperty
+    26         0 @SelfFulfillingNKPC/src/simulation.jl     42 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    27        27 @Base/essentials.jl                       11 length
+    29        28 @Base/tuple.jl                            33 getindex
+    30         0 @SelfFulfillingNKPC/src/simulation.jl     99 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    30         0 @Base/broadcast.jl                       947 copyto!
+    30         0 @Base/broadcast.jl                       994 copyto!
+    32         0 @SelfFulfillingNKPC/src/simulation.jl     27 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    35        34 @SelfFulfillingNKPC/src/simulation.jl      ? simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    37         0 @SelfFulfillingNKPC/src/simulation.jl    126 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    39         0 @SelfFulfillingNKPC/src/simulation.jl     94 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    40         0 @SelfFulfillingNKPC/src/simulation.jl     40 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    40        40 @Base/promotion.jl                       637 ==
+    40         0 @SelfFulfillingNKPC/src/simulation.jl    121 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    40         0 @SelfFulfillingNKPC/src/simulation.jl    120 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    41         0 @SelfFulfillingNKPC/src/simulation.jl     98 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    41         0 @Base/promotion.jl                       435 -
+    41         1 @Base/range.jl                           921 iterate
+    41        31 @Base/boot.jl                            648 Array
+    42         0 @SelfFulfillingNKPC/src/simulation.jl     43 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    42         0 @Base/broadcast.jl                       227 similar
+    42         0 @Base/broadcast.jl                       228 similar
+    44         0 @SelfFulfillingNKPC/src/simulation.jl     46 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    46        46 @SelfFulfillingNKPC/src/config.jl        173 unpack(theta::Vector{Float64}, cfg::EstimationConfig)
+    47         0 @Base/array.jl                           937 getindex
+    47         0 @Base/abstractarray.jl                   822 similar
+    47         0 @Base/array.jl                           377 similar
+    51         0 @SelfFulfillingNKPC/src/simulation.jl    103 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    51         0 @Base/operators.jl                       642 *
+    57         0 @Base/generator.jl                        48 iterate
+    57         0 none                                       ? #hcat##0
+    72         0 @Base/broadcast.jl                       894 materialize
+    72         0 @Base/broadcast.jl                       919 copy
+    74         0 @Base/intfuncs.jl                        437 literal_pow
+    75         0 @SelfFulfillingNKPC/src/simulation.jl    100 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    77         0 @Base/array.jl                           800 collect(itr::Base.Generator{Base.Iterators.ProductIterator{Tuple{U…
+    77         0 @Base/array.jl                           826 collect_to_with_first!
+    77         0 @Base/array.jl                           848 collect_to!
+    82         0 @Base/boot.jl                            604 new_as_memoryref
+    84         0 @Base/array.jl                           795 collect(itr::Base.Generator{Base.Iterators.ProductIterator{Tuple{U…
+    84         0 @Base/array.jl                           670 _array_for_inner
+    84         0 @Base/boot.jl                            661 Array
+    84         1 @Base/boot.jl                            651 Array
+    87         0 @SelfFulfillingNKPC/src/simulation.jl    105 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+    98         0 @SelfFulfillingNKPC/src/simulation.jl    116 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+   110       110 @Base/float.jl                           496 -
+   125         0 @SelfFulfillingNKPC/src/simulation.jl     39 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+   126         0 @Base/abstractarray.jl                   866 similar
+   126         0 @Base/abstractarray.jl                   867 similar
+   127       127 @Base/float.jl                           495 +
+   141       141 @Base/array.jl                           991 _setindex!
+   165       139 @Base/essentials.jl                      919 getindex
+   167         0 @SelfFulfillingNKPC/src/simulation.jl    106 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+   168         0 @Base/array.jl                          2260 hcat
+   181         0 @SelfFulfillingNKPC/src/simulation.jl    125 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+   212       212 @Base/array.jl                           990 _setindex!
+   234         0 @SelfFulfillingNKPC/src/simulation.jl     38 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+   304         0 @SelfFulfillingNKPC/src/simulation.jl     45 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int…
+   353         0 @Base/array.jl                           986 setindex!
+   356       356 @Base/float.jl                           497 *
+   358         0 @Base/array.jl                           595 zeros
+   365         0 @Base/array.jl                           591 zeros
+   406         0 @Base/boot.jl                            647 Array
+   447         0 @Base/boot.jl                            660 Array
+   488       488 @Base/boot.jl                            588 GenericMemory
+  1933         0 @SelfFulfillingNKPC/scripts/profile.jl    27 profile_case(label::String, cfg::EstimationConfig)
+  1933         0 @SelfFulfillingNKPC/scripts/profile.jl    35 profile_case(label::String, cfg::EstimationConfig; T_obs::Int64, N…
+  1933         0 @Profile/src/Profile.jl                   60 macro expansion
+  1933         0 @SelfFulfillingNKPC/scripts/profile.jl    36 macro expansion
+  1933         0 @SelfFulfillingNKPC/src/simulation.jl     22 simulate
+  1945         0 @Base/client.jl                          550 _start()
+  1945         0 @Base/client.jl                          317 exec_options(opts::Base.JLOptions)
+  1945         0 @Base/Base.jl                            306 include(mod::Module, _path::String)
+  1945         0 @Base/loading.jl                        2930 _include(mapexpr::Function, mod::Module, _path::String)
+  1945         0 @Base/loading.jl                        2870 include_string(mapexpr::typeof(identity), mod::Module, code::Strin…
+  1945        12 @Base/boot.jl                            489 eval(m::Module, e::Any)
+Total snapshots: 4550. Utilization: 50% across all threads and tasks. Use the `groupby` kwarg to break down by thread and/or task.
+
+--- Call tree (top frames) ---
+
+Overhead ╎ [+additional indent] Count File:Line  Function
+=========================================================
+    ╎1945 @Base/client.jl:550  _start()
+    ╎ 1945 @Base/client.jl:317  exec_options(opts::Base.JLOptions)
+    ╎  1945 @Base/Base.jl:306  include(mod::Module, _path::String)
+    ╎   1945 @Base/loading.jl:2930  _include(mapexpr::Function, mod::Module, _path::String)
+    ╎    1945 @Base/loading.jl:2870  include_string(mapexpr::typeof(identity), mod::Module, code::String, filename::String)
+  12╎     1945 @Base/boot.jl:489  eval(m::Module, e::Any)
+    ╎    ╎ 1933 @SelfFulfillingNKPC/scripts/profile.jl:27  profile_case(label::String, cfg::EstimationConfig)
+    ╎    ╎  1933 @SelfFulfillingNKPC/scripts/profile.jl:35  profile_case(label::String, cfg::EstimationConfig; T_obs::Int64, N::Int64)
+    ╎    ╎   1933 @Profile/src/Profile.jl:60  macro expansion
+    ╎    ╎    1933 @SelfFulfillingNKPC/scripts/profile.jl:36  macro expansion
+    ╎    ╎     1933 @SelfFulfillingNKPC/src/simulation.jl:22  simulate
+  34╎    ╎    ╎ 35   @SelfFulfillingNKPC/src/simulation.jl:0  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d::…
+    ╎    ╎    ╎ 32   @SelfFulfillingNKPC/src/simulation.jl:27  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+  27╎    ╎    ╎  27   @SelfFulfillingNKPC/src/config.jl:173  unpack(theta::Vector{Float64}, cfg::EstimationConfig)
+    ╎    ╎    ╎ 234  @SelfFulfillingNKPC/src/simulation.jl:38  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+    ╎    ╎    ╎  148  @Base/array.jl:986  setindex!
+  85╎    ╎    ╎   85   @Base/array.jl:990  _setindex!
+  63╎    ╎    ╎   63   @Base/array.jl:991  _setindex!
+  81╎    ╎    ╎  81   @Base/essentials.jl:919  getindex
+    ╎    ╎    ╎ 125  @SelfFulfillingNKPC/src/simulation.jl:39  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+    ╎    ╎    ╎  111  @Base/array.jl:986  setindex!
+ 110╎    ╎    ╎   110  @Base/array.jl:990  _setindex!
+    ╎    ╎    ╎ 40   @SelfFulfillingNKPC/src/simulation.jl:40  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+    ╎    ╎    ╎  40   @Base/range.jl:921  iterate
+  40╎    ╎    ╎   40   @Base/promotion.jl:637  ==
+    ╎    ╎    ╎ 26   @SelfFulfillingNKPC/src/simulation.jl:42  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+    ╎    ╎    ╎  26   @Base/broadcast.jl:894  materialize
+    ╎    ╎    ╎   26   @Base/broadcast.jl:919  copy
+    ╎    ╎    ╎ 42   @SelfFulfillingNKPC/src/simulation.jl:43  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+    ╎    ╎    ╎  42   @Base/broadcast.jl:894  materialize
+    ╎    ╎    ╎   42   @Base/broadcast.jl:919  copy
+    ╎    ╎    ╎    27   @Base/broadcast.jl:227  similar
+    ╎    ╎    ╎ 304  @SelfFulfillingNKPC/src/simulation.jl:45  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+    ╎    ╎    ╎  304  @Base/array.jl:591  zeros
+    ╎    ╎    ╎   301  @Base/array.jl:595  zeros
+    ╎    ╎    ╎    301  @Base/boot.jl:660  Array
+    ╎    ╎    ╎ 44   @SelfFulfillingNKPC/src/simulation.jl:46  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+    ╎    ╎    ╎  44   @Base/array.jl:591  zeros
+    ╎    ╎    ╎   43   @Base/array.jl:595  zeros
+    ╎    ╎    ╎    43   @Base/boot.jl:660  Array
+    ╎    ╎    ╎ 22   @SelfFulfillingNKPC/src/simulation.jl:52  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+    ╎    ╎    ╎ 21   @SelfFulfillingNKPC/src/simulation.jl:66  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+    ╎    ╎    ╎  21   @SelfFulfillingNKPC/src/model.jl:56  policy_numeric
+    ╎    ╎    ╎   21   @Optim/src/univariate/solvers/brent.jl:23  optimize
+    ╎    ╎    ╎ 20   @SelfFulfillingNKPC/src/simulation.jl:87  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+  20╎    ╎    ╎  20   @Base/essentials.jl:919  getindex
+    ╎    ╎    ╎ 25   @SelfFulfillingNKPC/src/simulation.jl:88  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+  25╎    ╎    ╎  25   @Base/essentials.jl:919  getindex
+    ╎    ╎    ╎ 39   @SelfFulfillingNKPC/src/simulation.jl:94  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+  27╎    ╎    ╎  27   @Base/float.jl:497  *
+    ╎    ╎    ╎ 41   @SelfFulfillingNKPC/src/simulation.jl:98  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+    ╎    ╎    ╎  41   @Base/promotion.jl:435  -
+  41╎    ╎    ╎   41   @Base/float.jl:496  -
+    ╎    ╎    ╎ 30   @SelfFulfillingNKPC/src/simulation.jl:99  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d:…
+  27╎    ╎    ╎  27   @Base/float.jl:497  *
+    ╎    ╎    ╎ 75   @SelfFulfillingNKPC/src/simulation.jl:100  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d…
+    ╎    ╎    ╎  60   @Base/intfuncs.jl:437  literal_pow
+  60╎    ╎    ╎   60   @Base/float.jl:497  *
+    ╎    ╎    ╎ 51   @SelfFulfillingNKPC/src/simulation.jl:103  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d…
+    ╎    ╎    ╎  51   @Base/operators.jl:642  *
+  51╎    ╎    ╎   51   @Base/float.jl:497  *
+    ╎    ╎    ╎ 87   @SelfFulfillingNKPC/src/simulation.jl:105  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d…
+  52╎    ╎    ╎  52   @Base/float.jl:497  *
+  35╎    ╎    ╎  35   @Base/float.jl:496  -
+    ╎    ╎    ╎ 167  @SelfFulfillingNKPC/src/simulation.jl:106  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d…
+  25╎    ╎    ╎  25   @Base/float.jl:497  *
+ 112╎    ╎    ╎  112  @Base/float.jl:495  +
+  30╎    ╎    ╎  30   @Base/float.jl:496  -
+    ╎    ╎    ╎ 98   @SelfFulfillingNKPC/src/simulation.jl:116  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d…
+  98╎    ╎    ╎  98   @Base/float.jl:497  *
+    ╎    ╎    ╎ 40   @SelfFulfillingNKPC/src/simulation.jl:120  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d…
+    ╎    ╎    ╎  40   @Base/array.jl:986  setindex!
+  32╎    ╎    ╎   32   @Base/array.jl:991  _setindex!
+    ╎    ╎    ╎ 40   @SelfFulfillingNKPC/src/simulation.jl:121  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d…
+    ╎    ╎    ╎  40   @Base/array.jl:986  setindex!
+  31╎    ╎    ╎   31   @Base/array.jl:991  _setindex!
+    ╎    ╎    ╎ 181  @SelfFulfillingNKPC/src/simulation.jl:125  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d…
+    ╎    ╎    ╎  168  @Base/array.jl:2260  hcat
+    ╎    ╎    ╎   84   @Base/array.jl:795  collect(itr::Base.Generator{Base.Iterators.ProductIterator{Tuple{UnitRange{Int64}, UnitRange{Int…
+    ╎    ╎    ╎    84   @Base/array.jl:670  _array_for_inner
+    ╎    ╎    ╎   77   @Base/array.jl:800  collect(itr::Base.Generator{Base.Iterators.ProductIterator{Tuple{UnitRange{Int64}, UnitRange{Int…
+    ╎    ╎    ╎    77   @Base/array.jl:826  collect_to_with_first!
+    ╎    ╎    ╎ 37   @SelfFulfillingNKPC/src/simulation.jl:126  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d…
+    ╎    ╎    ╎  36   @Base/array.jl:937  getindex
+    ╎    ╎    ╎   36   @Base/abstractarray.jl:822  similar
+    ╎    ╎    ╎    36   @Base/array.jl:377  similar
+Total snapshots: 4550. Utilization: 50% across all threads and tasks. Use the `groupby` kwarg to break down by thread and/or task.
+
+==============================================================================
+  Case 2 — active policy  (N=30000 simulate calls, T_obs=166)
+==============================================================================
+
+--- Flat profile (top by self-time) ---
+
+ Count  Overhead File                                                 Line Function
+ =====  ======== ====                                                 ==== ========
+    22         0 @SelfFulfillingNKPC/src/simulation.jl                121 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+    22         0 @Base/iterators.jl                                   682 iterate
+    22         0 @Base/simdloop.jl                                     78 macro expansion
+    23        23 @Base/float.jl                                       626 isequal
+    23         1 @Base/set.jl                                         583 _indexed_allunique
+    23        23 @Base/float.jl                                       638 isless
+    23        23 @Base/int.jl                                          87 +
+    24         1 @Base/set.jl                                         582 _indexed_allunique
+    25        25 @Base/Base_compiler.jl                                54 getproperty
+    25         0 @Base/array.jl                                       790 collect(itr::Base.Generator{Vector{Float64}, Main.SelfFulfilli…
+    28         0 @Base/operators.jl                                   642 +
+    29         0 @Base/broadcast.jl                                   947 copyto!
+    29         0 @Base/broadcast.jl                                   994 copyto!
+    29         0 @SelfFulfillingNKPC/src/simulation.jl                105 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+    30         0 @SelfFulfillingNKPC/src/simulation.jl                 42 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+    30        30 @Base/iterators.jl                                  1159 _piterate1
+    30         0 @SelfFulfillingNKPC/src/simulation.jl                 43 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+    31         0 @SelfFulfillingNKPC/src/simulation.jl                 59 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+    32         0 @SelfFulfillingNKPC/src/simulation.jl                 52 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+    34         0 @Base/iterators.jl                                  1171 iterate
+    35         0 @Base/broadcast.jl                                   227 similar
+    35         0 @Base/broadcast.jl                                   228 similar
+    35         0 @SelfFulfillingNKPC/src/model.jl                      34 (::Main.SelfFulfillingNKPC.var"#cb_loss#policy_numeric##0"{Flo…
+    36         0 @SelfFulfillingNKPC/src/model.jl                      45 (::Main.SelfFulfillingNKPC.var"#cb_loss#policy_numeric##0"{Flo…
+    39         0 @SelfFulfillingNKPC/src/simulation.jl                 34 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+    39         0 @Base/generator.jl                                    45 iterate
+    40        40 @SelfFulfillingNKPC/src/simulation.jl                  ? simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+    42         0 @Base/float.jl                                       632 _fpint
+    44         0 @SelfFulfillingNKPC/src/simulation.jl                 46 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+    44        44 @Base/tuple.jl                                        33 getindex
+    45         0 @Base/operators.jl                                   642 *
+    45         0 @SelfFulfillingNKPC/src/simulation.jl                 40 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+    45        45 @Base/essentials.jl                                  733 reinterpret
+    48         1 @SelfFulfillingNKPC/src/simulation.jl                 27 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+    48         0 @SelfFulfillingNKPC/src/model.jl                      51 (::Main.SelfFulfillingNKPC.var"#cb_loss#policy_numeric##0"{Flo…
+    49         0 @Interpolations/src/gridded/gridded.jl                80 check_gridded
+    49         0 @Base/set.jl                                         550 allunique(A::Vector{Float64})
+    50         0 @Base/float.jl                                       640 isless
+    51         0 @Optim/src/univariate/solvers/brent.jl               187 optimize(f::Main.SelfFulfillingNKPC.var"#cb_loss#policy_numeri…
+    52        52 @Base/essentials.jl                                   11 length
+    52         0 @SelfFulfillingNKPC/src/model.jl                      36 (::Main.SelfFulfillingNKPC.var"#cb_loss#policy_numeric##0"{Flo…
+    54        54 @Base/boot.jl                                        792 NamedTuple
+    57         0 @SelfFulfillingNKPC/src/simulation.jl                 61 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+    57         0 @Interpolations/src/convenience-constructors.jl        9 linear_interpolation
+    57         0 @Interpolations/src/convenience-constructors.jl        9 #linear_interpolation#34
+    57         0 @Interpolations/src/gridded/gridded.jl               175 interpolate
+    57         0 @Interpolations/src/gridded/gridded.jl               156 interpolate
+    57         0 @Interpolations/src/gridded/gridded.jl                42 Interpolations.GriddedInterpolation(::Type{Float64}, knots::Tu…
+    60        60 @SelfFulfillingNKPC/src/config.jl                    173 unpack(theta::Vector{Float64}, cfg::EstimationConfig)
+    64         0 @Base/broadcast.jl                                   919 copy
+    67        67 @Base/promotion.jl                                   637 ==
+    70         3 @Base/range.jl                                       921 iterate
+    71         0 @SelfFulfillingNKPC/src/simulation.jl                126 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+    71         0 @Base/array.jl                                       937 getindex
+    71         0 @Base/abstractarray.jl                               822 similar
+    71         0 @Base/array.jl                                       377 similar
+    71        71 @Base/float.jl                                       699 abs
+    72         0 @Base/broadcast.jl                                   894 materialize
+    72        61 @Base/boot.jl                                        648 Array
+    72         0 @Interpolations/src/gridded/indexing.jl                5 GriddedInterpolation
+    72         0 @Interpolations/src/Interpolations.jl                289 getindex
+    72         0 @Interpolations/src/Interpolations.jl                305 interp_getindex
+    72         0 @Interpolations/src/Interpolations.jl                311 interp_getindex
+    73         0 @Base/ordering.jl                                    118 lt
+    76        76 @SelfFulfillingNKPC/src/model.jl                      31 (::Main.SelfFulfillingNKPC.var"#cb_loss#policy_numeric##0"{Flo…
+    81         0 @SelfFulfillingNKPC/src/simulation.jl                 88 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+    87         0 none                                                   ? #hcat##0
+   103         0 @Optim/src/univariate/solvers/brent.jl               112 optimize(f::Main.SelfFulfillingNKPC.var"#cb_loss#policy_numeri…
+   107         0 @Interpolations/src/extrapolation/extrapolation.jl   107 inbounds_position
+   107         0 @Interpolations/src/extrapolation/extrapolation.jl   113 inbounds_index
+   107         0 @Interpolations/src/extrapolation/extrapolation.jl   133 inbounds_index
+   107         0 @Interpolations/src/extrapolation/extrapolation.jl   136 inbounds_index
+   107         0 @Interpolations/src/extrapolation/extrapolation.jl   153 minp
+   107       107 @Base/math.jl                                        835 min
+   114         0 @Interpolations/src/extrapolation/extrapolation.jl    53 Extrapolation
+   122         0 @Base/boot.jl                                        661 Array
+   122         0 @Base/boot.jl                                        651 Array
+   122         0 @Base/boot.jl                                        604 new_as_memoryref
+   122         0 @Base/array.jl                                       848 collect_to!
+   125         0 @Base/array.jl                                       795 collect(itr::Base.Generator{Base.Iterators.ProductIterator{Tup…
+   125         0 @SelfFulfillingNKPC/src/simulation.jl                 39 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+   129         0 @Base/array.jl                                       670 _array_for_inner
+   133        80 @Optim/src/univariate/solvers/brent.jl                 ? optimize(f::Main.SelfFulfillingNKPC.var"#cb_loss#policy_numeri…
+   136         0 @SelfFulfillingNKPC/src/simulation.jl                120 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+   137       137 @Base/float.jl                                       496 -
+   161         0 @SelfFulfillingNKPC/src/simulation.jl                117 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+   164         0 @Base/abstractarray.jl                               866 similar
+   164         0 @Base/abstractarray.jl                               867 similar
+   197       197 @Base/array.jl                                       990 _setindex!
+   218         0 @SelfFulfillingNKPC/src/simulation.jl                106 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+   226         0 @SelfFulfillingNKPC/src/simulation.jl                116 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+   229       179 @Base/essentials.jl                                  919 getindex
+   245       245 @Base/array.jl                                       991 _setindex!
+   249         5 @Optim/src/univariate/solvers/brent.jl               151 optimize(f::Main.SelfFulfillingNKPC.var"#cb_loss#policy_numeri…
+   249         0 @SelfFulfillingNKPC/src/simulation.jl                 38 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+   252       252 @Base/essentials.jl                                  920 getindex
+   253         0 @Base/array.jl                                      2260 hcat
+   256       256 @Base/float.jl                                       495 +
+   268         0 @SelfFulfillingNKPC/src/simulation.jl                125 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+   271       271 @Base/intfuncs.jl                                      ? simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+   323         0 @SelfFulfillingNKPC/src/simulation.jl                 45 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+   328         0 @SelfFulfillingNKPC/src/simulation.jl                115 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+   331         0 @Optim/src/univariate/solvers/brent.jl               196 optimize(f::Main.SelfFulfillingNKPC.var"#cb_loss#policy_numeri…
+   332         0 @Base/intfuncs.jl                                    437 literal_pow
+   342       342 @Base/libc.jl                                        294 time
+   351       351 @Base/intfuncs.jl                                   1340 clamp
+   404         0 @Base/array.jl                                       595 zeros
+   406         0 @Base/array.jl                                       591 zeros
+   442         0 @Base/array.jl                                       986 setindex!
+   456         0 @Base/boot.jl                                        647 Array
+   517         0 @Base/boot.jl                                        660 Array
+   578       578 @Base/boot.jl                                        588 GenericMemory
+   764       764 @Base/float.jl                                       497 *
+   980         0 @Base/array.jl                                       848 collect_to!(dest::Vector{Float64}, itr::Base.Generator{Vector{…
+   998         0 @SelfFulfillingNKPC/src/model.jl                      56 policy_numeric
+   998         2 @Optim/src/univariate/solvers/brent.jl                23 optimize
+  1000         0 none                                                   ? #18
+  1007         1 @SelfFulfillingNKPC/src/simulation.jl                 60 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+  1087         0 @Base/generator.jl                                    48 iterate
+  1098         0 @Base/array.jl                                       800 collect(itr::Base.Generator{Vector{Float64}, Main.SelfFulfilli…
+  1099         0 @Base/array.jl                                       826 collect_to_with_first!
+  1908      1679 @Base/sort.jl                                        192 searchsortedfirst
+  1921         0 @Interpolations/src/gridded/indexing.jl                4 GriddedInterpolation
+  1921         0 @Interpolations/src/b-splines/indexing.jl             66 weightedindexes
+  1921         0 @Interpolations/src/b-splines/indexing.jl             70 map3argf
+  1921         0 @Interpolations/src/gridded/indexing.jl               55 weightedindex_parts
+  1921         0 @Interpolations/src/gridded/indexing.jl               51 find_knot_index
+  1921         0 @Base/sort.jl                                        308 searchsortedfirst
+  1993         0 @Interpolations/src/extrapolation/extrapolation.jl    54 Extrapolation
+  2297         0 @SelfFulfillingNKPC/src/simulation.jl                 80 simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs:…
+  6314         0 @SelfFulfillingNKPC/scripts/profile.jl                27 profile_case(label::String, cfg::EstimationConfig)
+  6316         0 @SelfFulfillingNKPC/scripts/profile.jl                35 profile_case(label::String, cfg::EstimationConfig; T_obs::Int6…
+  6316         0 @Profile/src/Profile.jl                               60 macro expansion
+  6316         0 @SelfFulfillingNKPC/scripts/profile.jl                36 macro expansion
+  6316         0 @SelfFulfillingNKPC/src/simulation.jl                 22 simulate
+  6376         0 @Base/client.jl                                      550 _start()
+  6376         0 @Base/client.jl                                      317 exec_options(opts::Base.JLOptions)
+  6376         0 @Base/Base.jl                                        306 include(mod::Module, _path::String)
+  6376         0 @Base/loading.jl                                    2930 _include(mapexpr::Function, mod::Module, _path::String)
+  6376         0 @Base/loading.jl                                    2870 include_string(mapexpr::typeof(identity), mod::Module, code::S…
+  6376        57 @Base/boot.jl                                        489 eval(m::Module, e::Any)
+Total snapshots: 35832. Utilization: 50% across all threads and tasks. Use the `groupby` kwarg to break down by thread and/or task.
+
+--- Call tree (top frames) ---
+
+Overhead ╎ [+additional indent] Count File:Line  Function
+=========================================================
+     ╎6376  @Base/client.jl:550  _start()
+     ╎ 6376  @Base/client.jl:317  exec_options(opts::Base.JLOptions)
+     ╎  6376  @Base/Base.jl:306  include(mod::Module, _path::String)
+     ╎   6376  @Base/loading.jl:2930  _include(mapexpr::Function, mod::Module, _path::String)
+     ╎    6376  @Base/loading.jl:2870  include_string(mapexpr::typeof(identity), mod::Module, code::String, filename::String)
+   57╎     6376  @Base/boot.jl:489  eval(m::Module, e::Any)
+     ╎    ╎ 6314  @SelfFulfillingNKPC/scripts/profile.jl:27  profile_case(label::String, cfg::EstimationConfig)
+     ╎    ╎  6314  @SelfFulfillingNKPC/scripts/profile.jl:35  profile_case(label::String, cfg::EstimationConfig; T_obs::Int64, N::Int64)
+     ╎    ╎   6314  @Profile/src/Profile.jl:60  macro expansion
+     ╎    ╎    6314  @SelfFulfillingNKPC/scripts/profile.jl:36  macro expansion
+     ╎    ╎     6314  @SelfFulfillingNKPC/src/simulation.jl:22  simulate
+  271╎    ╎    ╎ 271   @Base/intfuncs.jl:0  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d::Vector{Float64}, i…
+   40╎    ╎    ╎ 40    @SelfFulfillingNKPC/src/simulation.jl:0  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_d…
+    1╎    ╎    ╎ 48    @SelfFulfillingNKPC/src/simulation.jl:27  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+   32╎    ╎    ╎  32    @SelfFulfillingNKPC/src/config.jl:173  unpack(theta::Vector{Float64}, cfg::EstimationConfig)
+     ╎    ╎    ╎ 39    @SelfFulfillingNKPC/src/simulation.jl:34  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+     ╎    ╎    ╎  39    @Base/array.jl:591  zeros
+     ╎    ╎    ╎   37    @Base/array.jl:595  zeros
+     ╎    ╎    ╎    37    @Base/boot.jl:660  Array
+     ╎    ╎    ╎ 249   @SelfFulfillingNKPC/src/simulation.jl:38  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+     ╎    ╎    ╎  160   @Base/array.jl:986  setindex!
+   75╎    ╎    ╎   75    @Base/array.jl:990  _setindex!
+   85╎    ╎    ╎   85    @Base/array.jl:991  _setindex!
+   75╎    ╎    ╎  75    @Base/essentials.jl:919  getindex
+     ╎    ╎    ╎ 125   @SelfFulfillingNKPC/src/simulation.jl:39  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+     ╎    ╎    ╎  115   @Base/array.jl:986  setindex!
+  113╎    ╎    ╎   113   @Base/array.jl:990  _setindex!
+     ╎    ╎    ╎ 45    @SelfFulfillingNKPC/src/simulation.jl:40  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+     ╎    ╎    ╎  45    @Base/range.jl:921  iterate
+   45╎    ╎    ╎   45    @Base/promotion.jl:637  ==
+     ╎    ╎    ╎ 30    @SelfFulfillingNKPC/src/simulation.jl:42  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+     ╎    ╎    ╎  30    @Base/broadcast.jl:894  materialize
+     ╎    ╎    ╎   30    @Base/broadcast.jl:919  copy
+     ╎    ╎    ╎ 30    @SelfFulfillingNKPC/src/simulation.jl:43  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+     ╎    ╎    ╎  30    @Base/broadcast.jl:894  materialize
+     ╎    ╎    ╎   29    @Base/broadcast.jl:919  copy
+     ╎    ╎    ╎ 323   @SelfFulfillingNKPC/src/simulation.jl:45  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+     ╎    ╎    ╎  323   @Base/array.jl:591  zeros
+     ╎    ╎    ╎   323   @Base/array.jl:595  zeros
+     ╎    ╎    ╎    323   @Base/boot.jl:660  Array
+     ╎    ╎    ╎ 44    @SelfFulfillingNKPC/src/simulation.jl:46  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+     ╎    ╎    ╎  44    @Base/array.jl:591  zeros
+     ╎    ╎    ╎   44    @Base/array.jl:595  zeros
+     ╎    ╎    ╎    44    @Base/boot.jl:660  Array
+     ╎    ╎    ╎ 32    @SelfFulfillingNKPC/src/simulation.jl:52  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+   28╎    ╎    ╎  28    @SelfFulfillingNKPC/src/config.jl:173  unpack(theta::Vector{Float64}, cfg::EstimationConfig)
+     ╎    ╎    ╎ 31    @SelfFulfillingNKPC/src/simulation.jl:59  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+    1╎    ╎    ╎ 1007  @SelfFulfillingNKPC/src/simulation.jl:60  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+     ╎    ╎    ╎  25    @Base/array.jl:790  collect(itr::Base.Generator{Vector{Float64}, Main.SelfFulfillingNKPC.var"#18#19"{EstimationConf…
+     ╎    ╎    ╎   25    @Base/generator.jl:48  iterate
+     ╎    ╎    ╎    25    none:?  #18
+     ╎    ╎    ╎  977   @Base/array.jl:800  collect(itr::Base.Generator{Vector{Float64}, Main.SelfFulfillingNKPC.var"#18#19"{EstimationConf…
+     ╎    ╎    ╎   977   @Base/array.jl:826  collect_to_with_first!
+     ╎    ╎    ╎    977   @Base/array.jl:848  collect_to!(dest::Vector{Float64}, itr::Base.Generator{Vector{Float64}, Main.SelfFulfillingNK…
+     ╎    ╎    ╎ 57    @SelfFulfillingNKPC/src/simulation.jl:61  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+     ╎    ╎    ╎  57    @Interpolations/…nvenience-constructors.jl:9  linear_interpolation
+     ╎    ╎    ╎   57    @Interpolations/…venience-constructors.jl:9  #linear_interpolation#34
+     ╎    ╎    ╎    57    @Interpolations/src/gridded/gridded.jl:175  interpolate
+     ╎    ╎    ╎ 2297  @SelfFulfillingNKPC/src/simulation.jl:80  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+  190╎    ╎    ╎  190   @Base/intfuncs.jl:1340  clamp
+     ╎    ╎    ╎  114   @Interpolations/…lation/extrapolation.jl:53  Extrapolation
+     ╎    ╎    ╎   107   @Interpolations/…lation/extrapolation.jl:107  inbounds_position
+     ╎    ╎    ╎    107   @Interpolations/…lation/extrapolation.jl:113  inbounds_index
+     ╎    ╎    ╎  1993  @Interpolations/…lation/extrapolation.jl:54  Extrapolation
+     ╎    ╎    ╎   1921  @Interpolations/src/gridded/indexing.jl:4  GriddedInterpolation
+     ╎    ╎    ╎    1921  @Interpolations/…c/b-splines/indexing.jl:66  weightedindexes
+     ╎    ╎    ╎   72    @Interpolations/src/gridded/indexing.jl:5  GriddedInterpolation
+     ╎    ╎    ╎    72    @Interpolations/src/Interpolations.jl:289  getindex
+     ╎    ╎    ╎ 81    @SelfFulfillingNKPC/src/simulation.jl:88  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn_…
+   81╎    ╎    ╎  81    @Base/essentials.jl:919  getindex
+     ╎    ╎    ╎ 29    @SelfFulfillingNKPC/src/simulation.jl:105  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn…
+   29╎    ╎    ╎  29    @Base/float.jl:497  *
+     ╎    ╎    ╎ 218   @SelfFulfillingNKPC/src/simulation.jl:106  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn…
+   43╎    ╎    ╎  43    @Base/float.jl:497  *
+  163╎    ╎    ╎  163   @Base/float.jl:495  +
+     ╎    ╎    ╎ 328   @SelfFulfillingNKPC/src/simulation.jl:115  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn…
+     ╎    ╎    ╎  328   @Base/intfuncs.jl:437  literal_pow
+  328╎    ╎    ╎   328   @Base/float.jl:497  *
+     ╎    ╎    ╎ 226   @SelfFulfillingNKPC/src/simulation.jl:116  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn…
+  222╎    ╎    ╎  222   @Base/float.jl:497  *
+     ╎    ╎    ╎ 161   @SelfFulfillingNKPC/src/simulation.jl:117  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn…
+  161╎    ╎    ╎  161   @Base/intfuncs.jl:1340  clamp
+     ╎    ╎    ╎ 136   @SelfFulfillingNKPC/src/simulation.jl:120  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn…
+     ╎    ╎    ╎  136   @Base/array.jl:986  setindex!
+  135╎    ╎    ╎   135   @Base/array.jl:991  _setindex!
+     ╎    ╎    ╎ 22    @SelfFulfillingNKPC/src/simulation.jl:121  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn…
+     ╎    ╎    ╎  22    @Base/array.jl:986  setindex!
+     ╎    ╎    ╎ 268   @SelfFulfillingNKPC/src/simulation.jl:125  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn…
+     ╎    ╎    ╎  253   @Base/array.jl:2260  hcat
+     ╎    ╎    ╎   122   @Base/array.jl:795  collect(itr::Base.Generator{Base.Iterators.ProductIterator{Tuple{UnitRange{Int64}, UnitRange{I…
+     ╎    ╎    ╎    122   @Base/array.jl:670  _array_for_inner
+     ╎    ╎    ╎   121   @Base/array.jl:800  collect(itr::Base.Generator{Base.Iterators.ProductIterator{Tuple{UnitRange{Int64}, UnitRange{I…
+     ╎    ╎    ╎    121   @Base/array.jl:826  collect_to_with_first!
+     ╎    ╎    ╎ 63    @SelfFulfillingNKPC/src/simulation.jl:126  simulate(theta::Vector{Float64}, cfg::EstimationConfig, T_obs::Int64; inn…
+     ╎    ╎    ╎  61    @Base/array.jl:937  getindex
+     ╎    ╎    ╎   61    @Base/abstractarray.jl:822  similar
+     ╎    ╎    ╎    61    @Base/array.jl:377  similar
+Total snapshots: 35832. Utilization: 50% across all threads and tasks. Use the `groupby` kwarg to break down by thread and/or task.
+
